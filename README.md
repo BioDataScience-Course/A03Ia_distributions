@@ -1,14 +1,14 @@
-# Exercices pratiques sur le Module 3 du cours de SDDI : Distribution
+# Exercices pratiques sur le Module 3 du cours de SDDI : graphiques de distributions
 
 ## Avant-propos
 
-Les données employées dans le cadre de cette étude proviennent de l'analyse d'image du zooplancton provenant de Tuléar (Madagascar).
+Les données employées dans le cadre de cette étude viennent de l'analyse d'image du zooplancton provenant de Tuléar (Madagascar).
 
 Vous trouverez des informations importantes depuis R comme ceci :
 
 `?zooplankton`
 
-Il est possible que ce document évolue au cours du temps. N'hésitez pas à aller vérifier le lien suivant afin de voir les modifications dans les consignes : https://github.com/BioDataScience-Course/A03Gb_distribution
+Il est possible que ce document évolue au cours du temps. N'hésitez pas à aller vérifier le lien suivant afin de voir les modifications dans les consignes : https://github.com/BioDataScience-Course/A03Ia_distributions
 
 ## Objectif
 
@@ -23,4 +23,3 @@ L'objectif est de compléter votre apprentisage dans l'analyse de la distributio
 ## Consignes
 
 Au sein du fichier `distribution.Rmd` qui se trouve dans le dossier `docs`, réalisez et commentez les différents graphiques demandés.
-
