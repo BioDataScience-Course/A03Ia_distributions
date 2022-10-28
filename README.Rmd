@@ -15,13 +15,13 @@ Les organismes planctoniques sont échantillonnés à l'aide d'un filet à planc
 
 ![](figures/scan.png)
 
-Figure extraite @2014grosjean
+Portion d'une image obtenue lors d'un scan d'un échantillon. Figure extraite de @2014grosjean
 
 Chaque particule sur l'image d'origine va être découpée et extraite. Elles sont nommées vignettes. De nombreuses mesures peuvent être réalisées. Le tableau `zooplankton` du package {data.io} comprend 18 variables mesurées (ou calculées) sur 1262 vignettes. Ces observations ont été obtenues suite à l'analyse d'image du zooplancton provenant de Tuléar (Madagascar).
 
 ![](figures/vignettes.png)
 
-Figure extraite @2014grosjean
+Assemblage de 25 vignettes. Figure extraite de @2014grosjean
 
 Chaque vignette est labélisée. C'est-à-dire qu'un expert de la taxonomie du plancton a identifié les organismes présents. La variable `class` vous informe sur cette identification.
 
