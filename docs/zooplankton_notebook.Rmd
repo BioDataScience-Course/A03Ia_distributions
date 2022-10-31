@@ -17,11 +17,11 @@ SciViews::R(lang = "fr")
 
 # Objectif
 
-Ce document propose une analyse graphique du jeu de données `zooplankton` du package {data.io}.
+Analyse graphique du jeu de données `data.io::zooplankton`.
 
 # Analyses graphiques
 
-<!--% Importez le jeu de données `zoo` depuis le package {data.io} et assignez-le à `zooplankton` ci-dessous. -->
+<!--% Vous importez le jeu de données `zooplankton` depuis le package {data.io} et vous l'assignez à `zoo` ci-dessous (code déjà rempli pour vous). Vous ferez ensuite toutes vos analyses en utilisant `zoo`. -->
 
 ```{r importation}
 zoo <- read(file = "zooplankton", package = "data.io")
@@ -46,10 +46,10 @@ names(zoo)
 
 ```
 
-<!--% Parmi les quatre graphiques précédents, sélectionnez celui que vous jugez le plus pertinent et décrivez-le en maximum 3 phrases. Modifiez le nom de l'axe des ordonnées (count -> Effectifs). -->
+<!--% Parmi les quatre graphiques précédents, sélectionnez celui que vous jugez le plus pertinent et décrivez-le en maximum 3 phrases. Modifiez le nom de l'axe des ordonnées pour le finaliser proprement (count -> Effectifs). -->
 
 ```{r histo2}
-# graphe selectionné
+# Graphique sélectionné et mis au net
 
 ```
 
@@ -59,33 +59,32 @@ names(zoo)
 
 ```
 
-<!--% Réalisez un diagramme en violon de l'aire (`area`) par classe (`class`) avec de la couleur pour chaque classe. Assurez-vous que la légende ne soit pas visible sur le graphique et que les classes soient lisibles. Décrivez celui-ci en maximum 5 phrases. -->
+<!--% Réalisez un graphique en violon de l'aire (`area`) par classe (`class`) avec de la couleur pour chaque classe. Assurez-vous que la légende ne soit pas visible sur le graphique et que les classes soient bien lisibles. Décrivez celui-ci en maximum 5 phrases. -->
 
 ```{r violin}
 
 ```
 
-<!--% Reproduisez le même graphique que le précédent, mais cette fois-ci en utilisant la fonction `geom_density_ridges()` du package {ggridges}. Commentez celui-ci en maximum 5 phrases. -->
+<!--% Reproduisez le même graphique que le précédent, mais cette fois-ci en utilisant la fonction `ggridges::geom_density_ridges()`. Commentez celui-ci en maximum 5 phrases. -->
 
 ```{r density_ridges}
-library(ggridges)
  
 ```
 
-<!--# À partir du jeu de données `zoo`, `zoo_sub` est obtenu et ne contient que les classes suivantes : "Poecilostomatoid", "Calanoid", "Cyclopoid", "Harpacticoid", ci-dessous (uniquement les copépodes). -->
+<!--# `zoo_sub` est une version du jeu de données qui ne contient que les classes suivantes : "Poecilostomatoid", "Calanoid", "Cyclopoid", "Harpacticoid" (uniquement les copépodes). Le code est prérempli pour vous. -->
 
 ```{r zoo_sub}
-# Réduction du jeu de données zooplankton
-zoo_sub <- filter(zoo, class %in% c("Poecilostomatoid", "Calanoid", "Cyclopoid", "Harpacticoid"))
+# Réduction du jeu de données zoo
+zoo_sub <- sfilter(zoo, class %in% c("Poecilostomatoid", "Calanoid", "Cyclopoid", "Harpacticoid"))
 ```
 
-<!--% En utilisant le jeu de données `zoo_sub`, réalisez un histogramme pour visualiser le diamètre de feret (`feret`) en utilisant un découpage en 25 classes. Créez un graphique en facette en utilisant la classe (`class`). Pour chaque classe, l'histogramme de la classe doit être affiché sur un histogramme grisé représentant l'ensemble des données. Modifiez le nom de l'axe des ordonnées (count -> Effectifs) et masquez la légende. Finalement, décrivez votre graphique en maximum 5 phrases. -->
+<!--% À partir du jeu de données `zoo_sub`, réalisez un histogramme pour visualiser le diamètre de Feret (`feret`) en utilisant un découpage en 25 classes. Créez un graphique en facette avec la classe (`class`). L'histogramme de chaque classe doit être affiché sur un histogramme global grisé représentant l'ensemble des données. Modifiez le nom de l'axe des ordonnées (count -> Effectifs) et masquez la légende. Finalement, décrivez votre graphique en maximum 5 phrases. -->
 
 ```{r histo_fact}
 
 ```
 
-<!--% À partir des 19 variables du jeu de données `zooplankton_sub`, réalisez et commentez deux nouveaux graphiques permettant d'analyser la distribution d'une variable. Utilisez deux géométries différentes et une variable facteur dans au moins un des deux graphiques. -->
+<!--% À partir des 20 variables du jeu de données `zoo_sub`, réalisez et commentez deux nouveaux graphiques permettant d'analyser la distribution d'une variable. Utilisez deux géométries différentes et une variable facteur dans au moins un des deux graphiques. -->
 
 ```{r distrib1}
 

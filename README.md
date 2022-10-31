@@ -14,7 +14,8 @@ une image. La figure ci-dessous présente une petite portion d’un scan.
 
 ![](figures/scan.png)
 
-Figure extraite Philippe et Kevin (2014)
+Portion d’une image obtenue lors d’un scan d’un échantillon. Figure
+extraite de Grosjean et Denis (2014)
 
 Chaque particule sur l’image d’origine va être découpée et extraite.
 Elles sont nommées vignettes. De nombreuses mesures peuvent être
@@ -25,7 +26,7 @@ Tuléar (Madagascar).
 
 ![](figures/vignettes.png)
 
-Figure extraite Philippe et Kevin (2014)
+Assemblage de 25 vignettes. Figure extraite de Grosjean et Denis (2014)
 
 Chaque vignette est labélisée. C’est-à-dire qu’un expert de la taxonomie
 du plancton a identifié les organismes présents. La variable `class`
@@ -51,8 +52,8 @@ distribution d’une variable en réalisant différents types de graphiques
 
 ## Consignes
 
-Au sein du fichier `distribution.Rmd` qui se trouve dans le dossier
-`docs`, réalisez et décrivez les différents graphiques demandés.
+Au sein du fichier `zooplankton_notebook.Rmd` qui se trouve dans le
+dossier `docs`, réalisez et décrivez les différents graphiques demandés.
 
 Chaque variable du jeu de données `zooplankton` du package {data.io} est
 explicitée dans la page d’aide associée à ce dernier.
@@ -86,6 +87,16 @@ de “block quote”
 
 <div id="refs" class="references csl-bib-body hanging-indent">
 
+<div id="ref-2014grosjean" class="csl-entry">
+
+Grosjean, Philippe, et Kevin Denis. 2014. « Chapter 12 - Supervised
+Classification of Images, Applied to Plankton Samples Using R and
+Zooimage ». In *Data Mining Applications with R*, édité par Yanchang
+Zhao et Yonghua Cen, 331‑65. Boston: Academic Press.
+https://doi.org/<https://doi.org/10.1016/B978-0-12-411511-8.00013-X>.
+
+</div>
+
 <div id="ref-2004grosjean" class="csl-entry">
 
 Grosjean, Philippe, Marc Picheral, Caroline Warembourg, et Gabriel
@@ -93,16 +104,6 @@ Gorsky. 2004. « Enumeration, measurement, and identification of net
 zooplankton samples using the ZOOSCAN digital imaging system ». *ICES
 Journal of Marine Science* 61 (4): 518‑25.
 <https://doi.org/10.1016/j.icesjms.2004.03.012>.
-
-</div>
-
-<div id="ref-2014grosjean" class="csl-entry">
-
-Philippe, Grosjean, et Denis Kevin. 2014. « Chapter 12 - Supervised
-Classification of Images, Applied to Plankton Samples Using R and
-Zooimage ». In *Data Mining Applications with R*, édité par Yanchang
-Zhao et Yonghua Cen, 331‑65. Boston: Academic Press.
-https://doi.org/<https://doi.org/10.1016/B978-0-12-411511-8.00013-X>.
 
 </div>
 
