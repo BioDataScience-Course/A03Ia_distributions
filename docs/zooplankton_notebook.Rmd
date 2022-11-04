@@ -5,7 +5,7 @@ date: "___"
 output: html_document
 ---
 
-<!--# Ceci est un commentaire. -->
+<!--# Ceci est un commentaire -->
 
 <!--% Ceci est une consigne. Ne jamais modifier ni déplacer les consignes dans le document ! -->
 
