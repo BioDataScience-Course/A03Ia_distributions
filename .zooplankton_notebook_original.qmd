@@ -1,0 +1,270 @@
+---
+title: "Analyse d'image du zooplancton de Tuléar (Madagascar)"
+author: "___"
+date: "`r Sys.Date()`"
+format:
+  html:
+    code-fold: true
+    code-tools: true
+    toc: true
+editor: visual
+lang: fr
+bibliography: "biblio/references.bib"
+---
+
+<!--# Ceci est un commentaire -->
+
+<!--% Ceci est une consigne. Ne jamais modifier ni déplacer les consignes dans le document ! -->
+
+<!--% Ajoutez votre nom dans l'entête YAML.-->
+
+```{r setup, include=FALSE}
+if (!"tools:tests" %in% search())
+  source(here::here("tests/tools_tests.R"), attach(NULL, name = "tools:tests"))
+
+# Configure SciViews::R environment
+SciViews::R(lang = "fr")
+```
+
+# Introduction et but
+
+<!--% Lisez attentivement les sections Introduction et but et Matériel et méthodes préremplies pour vous, afin de bien comprendre ce que l'on attend comme information dans ces sections d'un bloc-notes : un texte concis, mais suffisamment complet pour bien comprendre le contexte, l'origine des données traitées et les outils logiciels et statistiques utilisés. -->
+
+Anciennement, les organismes planctoniques collectés étaient identifiés et dénombrés sous binoculaire. Cette approche était longue très fastidieuse. Des outils comme le Zooscan ont été développés afin d'aider les scientifiques à compter, mesurer et identifier les organismes [@2004grosjean]. Avec ce système, les échantillons sont numérisés et ensuite, le zooplancton y est dénombré de manière semi-automatique (le spécialiste vérifie et corrige l'a classification réalisée par l'ordinateur). La figure ci-dessous présente une petite portion d'un scan ainsi obtenu.
+
+![](figures/scan.png)
+
+*Portion d'une image obtenue lors du scan d'un échantillon. Figure extraite de @2014grosjean.*
+
+Chaque particule sur l'image d'origine est découpée et extraite. Les imagettes résultantes (appelées vignettes) sont traitées par analyse d'image pour en extraire des caractéristiques morphométriques (taille, forme, transparence via la répartition des niveaux de gris...)
+
+![](figures/vignettes.png)*Assemblage de 25 vignettes. Figure extraite de @2014grosjean.*
+
+La classification automatisée sur ordinateur sera étudiée au cours SDD III en Master 1. Elle nécessite une série de mesures réalisées sur chaque particule planctonique à partir des vignettes. Le but du présent travail est de décrire la distribution de quelques unes de ces variables à l'aide des graphiques adéquats.
+
+# Matériel et méthodes
+
+Les organismes planctoniques ont été échantillonnés à Tuléar, Madagascar, à l'aide d'un filet à plancton de 200µm de maille, numérisés avec un scanner à plat Epson V750Pro (similaire au Zooscan) et traités par le logiciel [ZooPhytoImage](https://cran.r-project.org/web/packages/zooimage/index.html) version 5.5.2.
+
+Le jeu de données utilisé ici est une petite partie du set initial, reprise dans le tableau `zooplankton` du package {data.io}. Il contient 19 variables mesurées (ou calculées) sur 1262 vignettes. Chaque vignette est labélisée (identification de la particule) par un spécialiste du plancton et l'identification se retrouve dans la variable qualitative `class`.
+
+L'analyse est réalisée dans la [SciViews Box 2023](https://www.sciviews.org/software/svbox/) dans [Saturn Cloud](https://saturncloud.io) (Linux) avec le [logiciel R](https://www.r-project.org) (`r R.version.string`). Le package {chart} version `r packageVersion("chart")` est utilisé pour réaliser les graphiques.
+
+# Résultats
+
+<!--% Vous importez le jeu de données `zooplankton` depuis le package {data.io} et vous l'assignez à `zoo` ci-dessous (code déjà rempli pour vous). Vous ferez ensuite toutes vos analyses en utilisant `zoo`. -->
+
+```{r import, record='RODFS', object='zoo'}
+zoo <- read(file = "zooplankton", package = "data.io")
+```
+
+Le jeu de données étudié contient les variables suivantes :
+
+```{r names}
+names(zoo)
+```
+
+<!--# `zoo_sub` est une version du jeu de données qui ne contient que les classes suivantes : "Poecilostomatoid", "Calanoid", "Cyclopoid", "Harpacticoid" (uniquement les copépodes). Le code est prérempli pour vous. Vous étudierez la fonction `sfilter()` plus tard. -->
+
+```{r zoo_sub, record='RODFS', object='zoo_sub'}
+# Réduction du jeu de données zoo
+zoo_sub <- sfilter(zoo, class %in% c("Poecilostomatoid", "Calanoid",
+  "Cyclopoid", "Harpacticoid"))
+```
+
+## Histogrammes
+
+Le diamètre circulaire équivalent (`ecd`) correspond au diamètre d'un cercle qui a même surface que la particule. C'est une bonne mesure moyenne de taille des particules planctoniques, faisant abstraction de la forme (plus ou moins allongée ou complexe). Un histogramme montre bien la distribution de cette variable au sein du jeu de données... à condition d'avoir bien choisi le nombre de classes.
+
+<!--% Réalisez quatre histogrammes pour visualiser la distribution du diamètre circulaire équivalent (`ecd`) en utilisant les nombres de classes suivantes suivantes : 10, 50, 100 et 200, et comparez ces histogrammes entre eux et décidez celui qui est le plus appropriée. -->
+
+```{r histo1a, record='RNSTR', arg='labels,layers'}
+chart(data = ___, ___) +
+  ___ +
+  ylab("Effectifs")
+```
+
+```{r histo1b, record='RNSTR', arg='labels,layers'}
+chart(data = __, ___) +
+  ___ +
+  ylab("Effectifs")
+```
+
+```{r histo1c, record='RNSTR', arg='labels,layers'}
+chart(data = __, ___) +
+  ___ +
+  ylab("Effectifs")
+```
+
+```{r histo1d, record='RNSTR', arg='labels,layers'}
+chart(data = ___, ___) +
+  ___ +
+  ylab("Effectifs")
+```
+
+<!--% Parmi les quatre hostogrammes précédents, sélectionnez celui que vous jugez le plus pertinent et décrivez-le ensuite. -->
+
+<!--# Rappel : lorsque vous voyez un chunk avec un `select_answer()` qui présente une série d'items à cocher, vous ne modifiez RIEN dans ce chunk si ce n'est rajouter des coches en forme de 'x' entre les crochets [] en regard des items corrects pour donner ceci: [x] -   item correct. -->
+
+```{r histo1comment, output="asis"}
+select_answer(r"-{
+[] -   Le meilleur histogramme est celui avec 10 classes (le premier).
+[] -   Le meilleur histogramme est celui avec 50 classes (le second).
+[] -   Le meilleur histogramme est celui avec 100 classes (le troisième).
+[] -   Le meilleur histogramme est celui avec 200 classes (le quatrième).}-")
+```
+
+```{r histo1comment2, output="asis"}
+select_answer(r"-{
+[] -   La distribution de l'`ecd` est unimodale et symétrique.
+[] -   La distribution de l'`ecd` est bimodale et symétrique.
+[] -   La distribution de l'`ecd` est multimodale et symétrique.
+[] -   La distribution de l'`ecd` est unimodale et asymétrique (étalement à gauche).
+[] -   La distribution de l'`ecd` est bimodale et asymétrique (étalement à gauche).
+[] -   La distribution de l'`ecd` est multimodale et asymétrique (étalement à gauche).
+[] -   La distribution de l'`ecd` est unimodale et asymétrique (étalement à droite).
+[] -   La distribution de l'`ecd` est bimodale et asymétrique (étalement à droite).
+[] -   La distribution de l'`ecd` est multimodale et asymétrique (étalement à droite).}-")
+```
+
+```{r histo2, record='RNSTR', arg='labels,layers'}
+chart(data = ___, ___) +
+  ___ +
+  ylab("Effectifs")
+```
+
+```{r histo3, record='RNSTR', arg='labels,layers'}
+nbins <- 30
+chart(data = ___, ___) +
+  geom_histogram(data = sselect(___, ___),
+    ___) + 
+  ___ +
+  ylab("Effectifs")
+```
+
+<!--% Interprétez les deux graphiques précédents -->
+
+```{r histo2comment, output="asis"}
+select_answer(r"-{
+[] -   Pour les copépodes, la distribution de l'`ecd` est unimodale et symétrique.
+[] -   Pour les copépodes, la distribution de l'`ecd` est bimodale et symétrique.
+[] -   Pour les copépodes, la distribution de l'`ecd` est multimodale et symétrique.
+[] -   Pour les copépodes, la distribution de l'`ecd` est unimodale et asymétrique (étalement à gauche).
+[] -   Pour les copépodes, la distribution de l'`ecd` est bimodale et asymétrique (étalement à gauche).
+[] -   Pour les copépodes, la distribution de l'`ecd` est multimodale et asymétrique (étalement à gauche).
+[] -   Pour les copépodes, la distribution de l'`ecd` est unimodale et asymétrique (étalement à droite).
+[] -   Pour les copépodes, la distribution de l'`ecd` est bimodale et asymétrique (étalement à droite).
+[] -   Pour les copépodes, la distribution de l'`ecd` est multimodale et asymétrique (étalement à droite).
+[] -   Les Calanoïdes sont les plus abondants suivis par les Poecilastomatoïdes, les Cyclopoïdes et les Harpactocoïdes.
+[] -   Les Poecilastomatoïdes ont la plus large distribution de tailles.
+[] -   Les Calanoïdes ont la plus large distribution de tailles.
+[] -   Les Cyclopoïdes et les Harpacticoïdes ont les distributions les plus restreintes en classes de taille.}-")
+```
+
+## Graphiques de densité
+
+Les niveaux de gris des pixels de l'image sont converties en densité optique (D.O.). La densité optique mesure les propriétés optiques d'un objet. Pour une lumière incidente, avec une D.O. nulle, un objet est parfaitement transparent et la lumière qui en ressort est de même intensité que celle qui le pénètre. Avec une D.O. de 0.5, la moitié de la lumière qui pénètre l'objet le traverse, et ainsi de suite.
+
+La transparence est un aspect important du zooplancton d'un point de vue écologique (être moins visible dans la masse d'eau). Il l'est, du coup, aussi pour caractériser les particules planctoniques sur base de leurs propriétés optiques.
+
+<!--% Réalisez à présent un graphique de densité pour visualiser la distribution des densités optiques moyennes (`mean`). -->
+
+```{r density1, record='RNSTR', arg='labels,layers'}
+chart(data = ___, ___) +
+  ___ +
+  ylab("Densité")
+```
+
+```{r density1comment, output="asis"}
+select_answer(r"-{
+[] -   La distribution de la D.O. moyenne est unimodale et symétrique.
+[] -   La distribution de la D.O. moyenne est bimodale et symétrique.
+[] -   La distribution de la D.O. moyenne est multimodale et symétrique.
+[] -   La distribution de la D.O. moyenne est unimodale et asymétrique (étalement à gauche).
+[] -   La distribution de la D.O. moyenne est bimodale et asymétrique (étalement à gauche).
+[] -   La distribution de la D.O. moyenne est multimodale et asymétrique (étalement à gauche).
+[] -   La distribution de la D.O. moyenne est unimodale et asymétrique (étalement à droite).
+[] -   La distribution de la D.O. moyenne est bimodale et asymétrique (étalement à droite).
+[] -   La distribution de la D.O. moyenne est multimodale et asymétrique (étalement à droite).
+[] -   Le mode correspondant à la densité optique moyenne la plus fréquente est faible (la majorité des particules sont transparentes).
+[] -   Le mode correspondant à la densité optique moyenne la plus fréquente est moyenne (la majorité des particules sont semi-transparentes).
+[] -   Le mode correspondant à la densité optique moyenne la plus fréquente est élevée (la majorité des particules sont plutôt opaques).}-")
+```
+
+<!--% Effectuez ensuite un graphique de densité pour visualiser la distribution des densités optiques maximales (`max`). -->
+
+```{r density2, record='RNSTR', arg='labels,layers'}
+chart(data = ___, ___) +
+  ___ +
+  ylab("Densité")
+```
+
+```{r density2comment, output="asis"}
+select_answer(r"-{
+[] -   La distribution de la D.O. maximale est unimodale et symétrique.
+[] -   La distribution de la D.O. maximale est bimodale et symétrique.
+[] -   La distribution de la D.O. maximale est multimodale et symétrique.
+[] -   La distribution de la D.O. maximale est unimodale et asymétrique (étalement à gauche).
+[] -   La distribution de la D.O. maximale est bimodale et asymétrique (étalement à gauche).
+[] -   La distribution de la D.O. maximale est multimodale et asymétrique (étalement à gauche).
+[] -   La distribution de la D.O. maximale est unimodale et asymétrique (étalement à droite).
+[] -   La distribution de la D.O. maximale est bimodale et asymétrique (étalement à droite).
+[] -   La distribution de la D.O. maximale est multimodale et asymétrique (étalement à droite).
+[] -   Le mode de D.O. max de gauche est faible, indiquant que la majorité des particules sont totalement transparentes.
+[] -   Le mode de D.O. max de gauche est moyen, indiquant que la majorité des particules ont des parties de leurs corps qui sont semi-transparentes.
+[] -   Le mode de D.O. max de gauche est élevé, indiquant que la majorité des particules ont au moins une partie de leur corps opaque.
+[] -   Le mode de D.O. max de droite est moyen, ce qui signifie qu'une fraction des particules zooplanctoniques ont des parties semi-opaques (œil, coquille, pièces squelettiques).
+[] -   Le mode de D.O. max de droite est élevé, ce qui signifie qu'une fraction des particules zooplanctoniques ont des parties complètement opaques (œil, coquille, pièces squelettiques).}-")
+```
+
+## Graphiques en violon et en lignes de crête
+
+La transparence de différents ordres de copépodes est comparée pour déterminer si les niveaux de gris servent aussi à discriminer les différents copépodes, en plus de leurs tailles.
+
+<!--% Réalisez un graphique en violon de la densité optique moyenne (`mean`) par classe (`class`) avec de la couleur de remplissage pour chaque classe. Assurez-vous que la légende ne soit pas visible sur le graphique et que les classes soient bien lisibles. -->
+
+```{r violin, record='RNSTR', arg='labels,layers'}
+chart(data = ___, ___) +
+  ___
+```
+
+<!--% Reproduisez le même graphique que le précédent, mais cette fois-ci sous forme d'un graphique en lignes de crête en utilisant la fonction `ggridges::geom_density_ridges()`, toujours avec les mêmes couleurs de remplissage et sans légende. -->
+
+```{r ridges, record='RNSTR', arg='labels,layers', message=FALSE}
+chart(data = ___, ___) +
+  ___
+```
+
+<!--% Interprétez ces graphiques en violon et en lignes de crête ci-dessous. -->
+
+```{r violincomment, output="asis"}
+select_answer(r"-{
+[] -   La distribution de la D.O. moyenne chez les copépodes est unimodale et symétrique.
+[] -   La distribution de la D.O. moyenne chez les copépodes est bimodale et symétrique.
+[] -   La distribution de la D.O. moyenne chez les copépodes est multimodale et symétrique.
+[] -   La distribution de la D.O. moyenne chez les copépodes est soit unimodale, soit bimodale et symétrique.
+[] -   La distribution de la D.O. moyenne chez les copépodes est soit unimodale, soit multimodale et symétrique.
+[] -   La distribution de la D.O. moyenne chez les copépodes est unimodale et asymétrique (étalement à gauche).
+[] -   La distribution de la D.O. moyenne chez les copépodes est bimodale et asymétrique (étalement à gauche).
+[] -   La distribution de la D.O. moyenne chez les copépodes est multimodale et asymétrique (étalement à gauche).
+[] -   La distribution de la D.O. moyenne chez les copépodes est soit unimodale, soit bimodale et asymétrique (étalement à gauche).
+[] -   La distribution de la D.O. moyenne chez les copépodes est soit unimodale, soit multimodale et asymétrique (étalement à gauche).
+[] -   La distribution de la D.O. moyenne chez les copépodes est unimodale et asymétrique (étalement à droite).
+[] -   La distribution de la D.O. moyenne chez les copépodes est bimodale et asymétrique (étalement à droite).
+[] -   La distribution de la D.O. moyenne est multimodale et asymétrique (étalement à droite).
+[] -   La distribution de la D.O. moyenne chez les copépodes est soit unimodale, soit bimodale et asymétrique (étalement à droite).
+[] -   La distribution de la D.O. moyenne chez les copépodes est soit unimodale, soit multimodale et asymétrique (étalement à droite).
+[] -   Les distributions des D.O. moyenne pour les différents ordres de copépodes se superposent.
+[] -   Les distributions des D.O. moyenne pour les  différents ordres de copépodes se séparent, mais seulement partiellement.
+[] -   Les distributions des D.O. moyenne pour les  différents ordres de copépodes se séparent complètement.}-")
+```
+
+# Discussion et conclusion
+
+<!--% À la fin de votre travail, lisez le texte ci-dessous prérempli pour vour pour comprendre ce qu'il faut écrire dans cette section, et comment il faut l'écrire (style). -->
+
+Nous avons étudié quelques distributions de variables pouvant servir à discriminer le zooplancton suite à l'analyse d'image. Il apparaît que les distributions sont le plus souvent asymétriques, parfois unimodales, parfois bimodales. Des tendances se détachent pour les ordres de copépodes que nous avons étudié plus particulièrement. Tant la taille que la transparence montrent des distributions différentes en fonction de l'ordre. Aucune variable étudiée ne permet à elle seule, cependant, de discriminer une classe car toutes les distributions se superposent. Il faudrait voir si une combinaison de différentes variables a un meilleur pouvoir discriminatoire.
+
+<!--% N'écrivez rien ci-dessous. Les références bibliographiques citées dans le texte seront automatiquement formatées sous forme d'une liste après le titre Références. -->
+
+# Références
